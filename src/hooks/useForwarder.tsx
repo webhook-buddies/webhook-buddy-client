@@ -7,7 +7,7 @@ import {
 } from './types/AddForward';
 import useAddForward from './useAddForward';
 import { appendQuery } from 'utils/http-fragment';
-import useSender from './useNodeSender';
+// import useSender from './useNodeSender';
 
 const useForwarder = (endpointId: string) => {
   const { addForwardingIds, removeForwardingId } = useForwardingIds();
@@ -52,7 +52,7 @@ const useForwarder = (endpointId: string) => {
     });
   };
 
-  const { send } = useSender({ onForwarded });
+  const { send } = { send: (url: string, webhook: Webhook) => {} }; //useSender({ onForwarded });
 
   const forwardWebhook = (url: string, webhooks: Webhook[]) => {
     addForwardUrl(url);
