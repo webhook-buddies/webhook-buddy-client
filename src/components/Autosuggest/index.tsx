@@ -128,8 +128,8 @@ const Autosuggest = ({
         return;
       case 40: // down arrow
         if (
-          state.activeIndex - 1 ===
-          state.filteredSuggestions.length
+          state.activeIndex ===
+          state.filteredSuggestions.length - 1
         )
           return;
 
