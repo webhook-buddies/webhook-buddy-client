@@ -83,6 +83,40 @@ app.on('activate', () => {
   }
 });
 
+autoUpdater.on('update-available', () => {
+  dialog.showMessageBox({
+    type: 'info',
+    title: 'Update Available',
+    message: 'A new version of app is available.',
+  });
+});
+
+autoUpdater.on('download-progress', progressObj => {
+  let log_message = 'Download speed: ' + progressObj.bytesPerSecond;
+  log_message =
+    log_message + ' - Downloaded ' + progressObj.percent + '%';
+  log_message =
+    log_message +
+    ' (' +
+    progressObj.transferred +
+    '/' +
+    progressObj.total +
+    ')';
+  dialog.showMessageBox({
+    type: 'info',
+    title: 'Update Available',
+    message: log_message,
+  });
+});
+
+autoUpdater.on('update-downloaded', () => {
+  dialog.showMessageBox({
+    type: 'info',
+    title: 'Update Available',
+    message: 'Update downloaded.',
+  });
+});
+
 app.on('ready', function () {
   autoUpdater.checkForUpdatesAndNotify();
 });
