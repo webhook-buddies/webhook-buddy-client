@@ -1,7 +1,7 @@
 {
   "name": "webhook-buddy-client",
   "description": "Desktop client that captures and forwards webhooks to your local development server.",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": "Johnny Oshika",
   "private": true,
   "main": "public/electron.js",

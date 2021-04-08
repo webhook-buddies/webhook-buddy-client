@@ -83,14 +83,39 @@ app.on('activate', () => {
   }
 });
 
-autoUpdater.on('update-available', () => {
-  dialog.showMessageBox({
-    type: 'info',
-    title: 'Update Available',
-    message: 'A new version of app is available.',
-  });
-});
+let win2;
 
+function sendStatusToWindow(text) {
+  log.info(text);
+  win2.webContents.send('message', text);
+}
+function createDefaultWindow() {
+  win2 = new BrowserWindow({
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  });
+  win2.webContents.openDevTools();
+  win2.on('closed', () => {
+    win2 = null;
+  });
+  win2.loadURL(
+    `file://${__dirname}/version.html#v${app.getVersion()}`,
+  );
+  return win2;
+}
+autoUpdater.on('checking-for-update', () => {
+  sendStatusToWindow('Checking for update...');
+});
+autoUpdater.on('update-available', info => {
+  sendStatusToWindow('Update available.');
+});
+autoUpdater.on('update-not-available', info => {
+  sendStatusToWindow('Update not available.');
+});
+autoUpdater.on('error', err => {
+  sendStatusToWindow('Error in auto-updater. ' + err);
+});
 autoUpdater.on('download-progress', progressObj => {
   let log_message = 'Download speed: ' + progressObj.bytesPerSecond;
   log_message =
@@ -102,19 +127,13 @@ autoUpdater.on('download-progress', progressObj => {
     '/' +
     progressObj.total +
     ')';
-  dialog.showMessageBox({
-    type: 'info',
-    title: 'Update Available',
-    message: log_message,
-  });
+  sendStatusToWindow(log_message);
 });
-
-autoUpdater.on('update-downloaded', () => {
-  dialog.showMessageBox({
-    type: 'info',
-    title: 'Update Available',
-    message: 'Update downloaded.',
-  });
+autoUpdater.on('update-downloaded', info => {
+  sendStatusToWindow('Update downloaded');
+});
+app.on('ready', function () {
+  createDefaultWindow();
 });
 
 app.on('ready', function () {
