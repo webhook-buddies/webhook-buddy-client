@@ -1,7 +1,7 @@
 {
   "name": "webhook-buddy-client",
   "description": "Desktop client that captures and forwards webhooks to your local development server.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Johnny Oshika",
   "private": true,
   "main": "public/electron.js",
@@ -19,6 +19,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "electron-is-dev": "^1.2.0",
+    "electron-updater": "^4.3.8",
     "font-awesome": "^4.7.0",
     "graphql": "^15.4.0",
     "is-electron": "^2.2.0",
@@ -50,7 +51,8 @@
     "dist": "npm run build && electron-builder",
     "postinstall": "electron-builder install-app-deps",
     "types-download": "npx apollo schema:download --endpoint=http://localhost:8000/graphql schema.json",
-    "types-generate": "npx apollo codegen:generate --localSchemaFile=schema.json --target=typescript --includes=src/**/*.tsx,src/schema/[!resolvers]*.ts --tagName=gql --addTypename --globalTypesFile=src/types/global-types.ts types"
+    "types-generate": "npx apollo codegen:generate --localSchemaFile=schema.json --target=typescript --includes=src/**/*.tsx,src/schema/[!resolvers]*.ts --tagName=gql --addTypename --globalTypesFile=src/types/global-types.ts types",
+    "publish": "./node_modules/.bin/electron-builder build -p always"
   },
   "build": {
     "appId": "com.webhookbuddy.client",
@@ -63,7 +65,11 @@
       "buildResources": "assets"
     },
     "mac": {
-      "category": "developer.tools"
+      "category": "developer.tools",
+      "target": [
+        "zip",
+        "pkg"
+      ]
     },
     "linux": {
       "target": [

@@ -1,7 +1,11 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 const path = require('path');
 const isDev = require('electron-is-dev');
 const request = require('request');
+
+const { version } = require('../package.json');
+app.getVersion = () => version;
+const { autoUpdater } = require('electron-updater');
 
 // Disable warnings for:
 // - Disabled webSecurity
@@ -77,4 +81,8 @@ app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
+});
+
+app.on('ready', function () {
+  autoUpdater.checkForUpdatesAndNotify();
 });
