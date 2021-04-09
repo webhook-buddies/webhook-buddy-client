@@ -26,6 +26,11 @@
   animation: recorderButtonOn 1.6s infinite;
 }
 
+.not-selected {
+  display: grid;
+  place-items: center;
+}
+
 @keyframes recorderButtonOn {
   0% {
     color: hsl(354, 70%, 54%);

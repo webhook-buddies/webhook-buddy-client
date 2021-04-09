@@ -70,7 +70,9 @@ const AutoForwarder = ({ docked }: { docked: Boolean }) => {
           endpointId={endpointId}
         />
       ) : (
-        <p>No endpoint selected.</p>
+        <div className={`${styles['not-selected']}`}>
+          <p>No Endpoint selected</p>
+        </div>
       )}
     </div>
   );
