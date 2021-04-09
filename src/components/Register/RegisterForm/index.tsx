@@ -32,7 +32,6 @@ const RegisterForm = ({
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (password === confirmPassword) {
-      console.log('Send data to server!');
       registerUser({
         variables: {
           input: {
@@ -43,8 +42,6 @@ const RegisterForm = ({
           },
         },
       });
-    } else {
-      console.log('Passwords do not match!');
     }
   };
 

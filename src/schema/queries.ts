@@ -51,6 +51,14 @@ export const ADD_FORWARD_URL = gql`
   ${FORWARD_URL_FRAGMENT}
 `;
 
+export const DELETE_FORWARD_URLS = gql`
+  mutation DeleteForwardUrls($input: DeleteForwardUrlInput!) {
+    deleteForwardUrls(input: $input) {
+      affectedRows
+    }
+  }
+`;
+
 export const ADD_FORWARD = gql`
   mutation AddForward($input: AddForwardInput!) {
     addForward(input: $input) {

@@ -30,6 +30,11 @@ export interface DeleteEndpointInput {
   id: string;
 }
 
+export interface DeleteForwardUrlInput {
+  endpointId: string;
+  url: string;
+}
+
 export interface DeleteWebhooksInput {
   webhookIds: string[];
   endpointId: string;

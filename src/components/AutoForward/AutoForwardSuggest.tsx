@@ -2,6 +2,7 @@ import Autosuggest, {
   AutosuggestPositionEnum,
 } from 'components/Autosuggest';
 import useForwardUrls from 'hooks/useForwardUrls';
+import useDeleteForwardUrls from 'hooks/useDeleteForwardUrls';
 
 const AutoForwardSuggest = (props: {
   url: string;
@@ -10,6 +11,9 @@ const AutoForwardSuggest = (props: {
   endpointId: string;
 }) => {
   const { forwardUrls } = useForwardUrls(props.endpointId);
+  const { deleteForwardUrls } = useDeleteForwardUrls(
+    props.endpointId,
+  );
   return (
     <div className="form-group">
       <label>Auto-forward to</label>
@@ -21,6 +25,7 @@ const AutoForwardSuggest = (props: {
         suggestions={forwardUrls}
         position={AutosuggestPositionEnum.Up}
         disabled={props.running}
+        deleteForwardUrls={deleteForwardUrls}
       />
     </div>
   );
