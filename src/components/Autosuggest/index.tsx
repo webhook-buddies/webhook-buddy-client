@@ -25,14 +25,16 @@ const SuggestionsList = ({
     return (
       <div className={`dropdown-menu ${styles.dropdownMenuCustom}`}>
         {filteredSuggestions.slice(0, 3).map((suggestion, index) => (
-          <div className={`btn-group ${styles.btnGroupCustom}`}>
+          <div
+            className={`btn-group ${styles.btnGroupCustom}`}
+            key={index}
+          >
             <button
               className={`
                 dropdown-item
                 ${styles.dropdownItemAutosuggest} 
                 ${index === activeIndex ? 'active' : ''}
               `}
-              key={suggestion}
               onMouseDown={onMouseDown}
             >
               {suggestion}
