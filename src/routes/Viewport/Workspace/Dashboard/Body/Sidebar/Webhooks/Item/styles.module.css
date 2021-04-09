@@ -9,6 +9,16 @@
   cursor: pointer;
 }
 
+.activeNotSelected {
+  outline: 1px solid rgba(42, 42, 255, 0.6);
+  outline-offset: -1px;
+}
+
+.activeSelected {
+  background: #f08800 !important;
+  color: white;
+}
+
 .selected,
 .selected:hover {
   background: #f09e22;

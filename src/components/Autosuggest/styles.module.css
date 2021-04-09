@@ -1,7 +1,37 @@
+.dropdownMenuCustom {
+  max-width: 100%;
+  display: block;
+}
+
+.btnGroupCustom {
+  display: flex;
+}
+
+.btnGroupCustom:hover {
+  background-color: #ececec;
+}
+
+.dropdownItemAutosuggest {
+  max-width: inherit;
+  overflow: hidden;
+  padding-left: 5px;
+}
+
 /* override bootstrap's dropdown hover/focus */
 .dropdownItemAutosuggest:hover,
 .dropdownItemAutosuggest:focus {
   color: #fff;
   text-decoration: none;
   background-color: #007bff;
+}
+
+.closeBtn {
+  margin: auto;
+  padding: 6px;
+}
+
+.closeBtn:hover,
+.closeBtn:focus {
+  background-color: #ff5733;
+  color: white;
 }

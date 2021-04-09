@@ -6,5 +6,5 @@
 }
 
 .list {
-  user-select: none;
+  user-select: none !important;
 }

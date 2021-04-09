@@ -29,6 +29,7 @@ const Row = ({ index, style, data }: ListChildComponentProps) => {
           isSelected={data.selectedWebhookIds.includes(
             data.webhooks[index].id,
           )}
+          isActive={data.activeWebhookId === data.webhooks[index].id}
           handleClick={data.handleWebhookClick}
           handleDelete={data.handleWebhookDelete}
         />
@@ -85,6 +86,7 @@ const Webhooks = ({ filter }: { filter: FilterEnum }) => {
       : webhooks;
 
   const {
+    activeWebhookId,
     selectedWebhookIds,
     handleWebhookClick,
     handleWebhookDelete,
@@ -102,6 +104,8 @@ const Webhooks = ({ filter }: { filter: FilterEnum }) => {
   // Every row is loaded except for loading indicator row
   const isItemLoaded = (index: number) =>
     !hasNextPage || index < filteredWebhooks.length;
+
+  console.log('Number of webhook ids: ' + selectedWebhookIds.length);
 
   return (
     <Autosizer>
@@ -121,6 +125,7 @@ const Webhooks = ({ filter }: { filter: FilterEnum }) => {
               itemSize={36}
               itemData={{
                 webhooks: filteredWebhooks,
+                activeWebhookId,
                 selectedWebhookIds,
                 handleWebhookClick,
                 handleWebhookDelete,

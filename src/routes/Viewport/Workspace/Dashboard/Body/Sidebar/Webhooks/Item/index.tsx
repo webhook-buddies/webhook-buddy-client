@@ -12,11 +12,13 @@ const formatCount = (n: number) =>
 const Item = ({
   webhook,
   isSelected,
+  isActive,
   handleClick,
   handleDelete,
 }: {
   webhook: Webhook;
   isSelected: boolean;
+  isActive: boolean;
   handleClick: (
     webhook: Webhook,
     ctrlKey: boolean,
@@ -34,9 +36,17 @@ const Item = ({
 
   return (
     <div
-      className={`${styles.item} ${
-        isSelected ? styles.selected : ''
-      } ${
+      className={`
+      ${styles.item} 
+      ${
+        isActive
+          ? isSelected
+            ? styles.activeSelected
+            : styles.activeNotSelected
+          : ''
+      }
+      ${isSelected ? styles.selected : ''} 
+      ${
         webhook.reads.some(r => r.reader.id === me?.id)
           ? ''
           : styles.unread
